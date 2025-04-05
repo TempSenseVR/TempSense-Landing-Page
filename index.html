@@ -3,73 +3,154 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>TempSense - Feel A New Dimension</title>
+        <title>TempSense - Thermal Haptics For Everyone</title>
         <link rel="stylesheet" href="styles.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     </head>
     <body>
-        <header>
+        <!-- Add these elements for the animated background -->
+        <div class="grid-overlay"></div>
+        <div class="particles"></div>
+        
+        <header class="sticky-header">
             <nav>
                 <div class="logo-container">
-                    <div class="logo"></div>
                     <img src="logo_no_bg.png" alt="TempSense Logo" class="logo-image"> 
                 </div>
                 <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="https://github.com/TempSenseVR/TempSense-GUI/releases">Download</a></li>
-                    <li><a href="https://discord.gg/XUgEVy4r3e">Discord</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="https://github.com/TempSenseVR/TempSense-GUI/releases" >Download <i class="fas fa-arrow-down"></i></a></li>
+                    <li><a href="https://discord.gg/XUgEVy4r3e">Discord <i class="fab fa-discord"></i></a></li>
+                    
+                    <li><a href="https://github.com/TempSenseVR" target="_blank">GitHub <i class="fab fa-github"></i></a></li>
                     <li><a href="about.html">About</a></li>
-                    <li><a href="https://github.com/TempSenseVR" target="_blank">GitHub</a></li>
                 </ul>
+                <button class="hamburger"><i class="fas fa-bars"></i></button>
             </nav>
+            <div class="mobile-nav-links">
+                <button class="close-menu"><i class="fas fa-times"></i></button>
+                <a href="index.html" class="active">Home</a>
+                <a href="https://github.com/TempSenseVR/TempSense-GUI/releases">Download</a>
+                <a href="https://discord.gg/XUgEVy4r3e">Community <i class="fab fa-discord"></i></a>
+                <a href="about.html">About</a>
+                <a href="https://github.com/TempSenseVR">Developers <i class="fab fa-github"></i></a>
+            </div>
         </header>
 
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1>Feel a New Dimension</h1>
-                <p>Experience the feeling of touch and the environment in a whole new way.</p>
-                <a href="https://github.com/TempSenseVR" class="cta-button">Get Started</a>
+                <div class="hero-text">
+                    <h1 data-aos="fade-up">Feel the Future of VR</h1>
+                    <p data-aos="fade-up" data-aos-delay="200">Immerse yourself in groundbreaking thermal haptic technology</p>
+                    <div class="cta-group" data-aos="fade-up" data-aos-delay="400">
+                        <a href="https://github.com/TempSenseVR/TempSense-GUI/releases" class="cta-button">Get Started </a>
+                        <a href="https://youtu.be/0QLUSCd0r04" class="cta-button secondary">▶ Watch Demo</a>
+                    </div>
+                </div>
+                <div class="hero-visual" data-aos="fade-left">
+                    <div class="gradient-overlay"></div>
+                </div>
             </div>
         </section>
-
 
         <section class="features">
-            <div class="feature-card">
-                <h3>Affordable</h3>
-                <p>Low cost entry to thermal haptics</p>
+            <div class="feature-card" data-aos="zoom-in">
+                <i class="fas fa-wallet"></i>
+                <h3>Affordable Innovation</h3>
+                <p>Premium thermal haptics at consumer-friendly pricing</p>
             </div>
-            <div class="feature-card">
-                <h3>Source First</h3>
-                <p>Built by the Community, for the Community</p>
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-users"></i>
+                <h3>Community Powered</h3>
+                <p>Open platform driven by passionate developers</p>
             </div>
-            <div class="feature-card">
-                <h3>Universal</h3>
-                <p>Works with almost any headset</p>
-            </div>
-            
-        </section>
-        
-        <section class="video-showcase">
-            <div class="video-container">
-                <h2>See It in Action</h2>
-                <div class="video-grid">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/0QLUSCd0r04" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen></iframe>
-                    </div>
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="400">
+                <i class="fas fa-universal-access"></i>
+                <h3>Universal Compatibility</h3>
+                <p>Seamless integration with all major VR headsets</p>
             </div>
         </section>
 
-       
+        <section class="video-showcase">
+            <h2 data-aos="fade-up">Experience Thermal Reality</h2>
+            <div class="video-container" data-aos="fade-up">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/0QLUSCd0r04" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="cta-content" data-aos="fade-up">
+                <h2>Ready to Feel More?</h2>
+                <p>Join thousands of VR enthusiasts experiencing thermal immersion</p>
+                <div class="cta-group">
+                    <a href="https://github.com/TempSenseVR/TempSense-GUI/releases" class="cta-button">Download Now →</a>
+                    <a href="https://discord.gg/XUgEVy4r3e" class="cta-button secondary">Join Community</a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 TempSense</p>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="logo_no_bg.png" alt="TempSense Logo" class="footer-logo">
+                <p>Pushing the boundaries of VR sensory experience.</p>
+            </div>
+            
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TempSense.</p>
+            <div class="social-links">
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://github.com/TempSenseVR" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://discord.gg/XUgEVy4r3e" target="_blank"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
     </footer>
+
+    <script src="scripts.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 120,
+        });
+        
+        // Create floating particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const particleContainer = document.querySelector('.particles');
+            if (particleContainer) {
+                const particleCount = 40;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    // Random positions and animation delays
+                    const size = Math.random() * 3 + 1;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    particle.style.opacity = Math.random() * 0.5;
+                    particle.style.animationDelay = `${Math.random() * 8}s`;
+                    particle.style.animationDuration = `${Math.random() * 12 + 8}s`;
+                    
+                    particleContainer.appendChild(particle);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
