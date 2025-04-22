@@ -287,7 +287,8 @@ nav {
     -webkit-text-fill-color: transparent;
 }
 
-.video-showcase {
+
+  .video-showcase {
     padding: 6rem 5%;
     text-align: center;
 }
@@ -312,19 +313,27 @@ nav {
     transform: scale(1.02);
 }
 
+
+.video-row {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 20px;
+margin-top: 1rem;
+}
+
 .video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
+flex: 1 1 45%;
+max-width: 560px;
+aspect-ratio: 16 / 9;
 }
 
 .video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+width: 100%;
+height: 100%;
+border: none;
 }
+  
 
 footer {
     background: rgba(24, 24, 27, 0.7);
