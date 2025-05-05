@@ -289,13 +289,13 @@ nav {
 
 
   .video-showcase {
-    padding: 6rem 5%;
+    padding: 2rem 5%;
     text-align: center;
 }
 
 .video-showcase h2 {
     font-size: 2.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 .video-container {
@@ -324,7 +324,7 @@ margin-top: 1rem;
 
 .video-wrapper {
 flex: 1 1 45%;
-max-width: 560px;
+max-width: 780px;
 aspect-ratio: 16 / 9;
 }
 
@@ -337,7 +337,7 @@ border: none;
 
 footer {
     background: rgba(24, 24, 27, 0.7);
-    margin-top: 6rem;
+    margin-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
 }
@@ -345,10 +345,10 @@ footer {
 .footer-content {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 4rem 5%;
+    padding: 1rem 5%;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1rem;
 }
 
 .footer-brand {
