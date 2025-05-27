@@ -1,40 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.querySelector('.mobile-nav-links');
-    const closeMenu = document.querySelector('.close-menu');
-  
-    // Toggle mobile menu
-    const toggleMenu = () => {
-      mobileMenu.classList.toggle('show');
-      document.body.classList.toggle('menu-open', mobileMenu.classList.contains('show'));
-    };
-  
-    // Event listeners
-    hamburger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleMenu();
+  // ——— Initialize AOS animations ———
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 400,  // animation duration in ms
+      once: true      // whether animation should happen only once
     });
-  
-    closeMenu.addEventListener('click', toggleMenu);
-  
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        mobileMenu.classList.remove('show');
-        document.body.classList.remove('menu-open');
-      }
-    });
-  
-    // Close menu on ESC key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        mobileMenu.classList.remove('show');
-        document.body.classList.remove('menu-open');
-      }
-    });
-  
-    // Close menu after clicking links
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', toggleMenu);
-    });
+  }
+
+  // ——— Mobile menu logic ———
+  const hamburger = document.querySelector('.hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const closeBtn  = mobileNav.querySelector('.close-menu');
+
+  function openMenu() {
+    mobileNav.classList.add('show');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    mobileNav.classList.remove('show');
+    document.body.classList.remove('menu-open');
+  }
+
+  hamburger.addEventListener('click', e => {
+    e.stopPropagation();
+    openMenu();
   });
+
+  closeBtn.addEventListener('click', closeMenu);
+
+  // Click outside to close
+  mobileNav.addEventListener('click', e => {
+    if (e.target === mobileNav) closeMenu();
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Close when any mobile-nav link is clicked
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+});

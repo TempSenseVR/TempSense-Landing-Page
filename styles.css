@@ -408,38 +408,6 @@ footer {
     }
 }
 
-/* Mobile Menu */
-.hamburger {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-/* Mobile Menu Styles */
-.mobile-nav-links {
-    display: none;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 2rem;
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(10px);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-    text-align: center;
-    overflow-y: auto;
-    animation: slideIn 0.3s ease forwards;
-}
-
-.mobile-nav-links.show {
-    display: flex;
-}
 
 .close-menu {
     position: absolute;
@@ -457,32 +425,92 @@ footer {
     transform: rotate(90deg);
 }
 
-.mobile-nav-links a {
-    color: var(--text);
-    padding: 1rem;
-    font-size: 1.2rem;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+/* Mobile menu container */
+#mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(10px);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
 }
 
-.mobile-nav-links a:hover {
-    background: rgba(255, 255, 255, 0.1);
+/* Show the mobile menu */
+#mobile-nav.show {
+  display: flex;
 }
 
-.mobile-nav-links a.active {
-    background: rgba(124, 58, 237, 0.2);
-    color: var(--primary);
+/* Close button */
+#mobile-nav .close-menu {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+#mobile-nav .close-menu:hover {
+  transform: rotate(90deg);
 }
 
-/* Body styles when menu is open */
+/* Mobile link list */
+.mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+.mobile-nav-list li {
+  width: 100%;
+}
+.mobile-nav-list a {
+  display: block;
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 1.25rem;
+  color: var(--text);
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.mobile-nav-list a:hover,
+.mobile-nav-list a.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--primary);
+}
+
+/* Prevent body scroll when menu is open */
 body.menu-open {
-    overflow: hidden;
+  overflow: hidden;
 }
+
+/* Ensure hamburger is visible on mobile */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .hamburger:hover {
+    transform: scale(1.1);
+  }
+}
+
 
 /* Ensure animation works */
 @keyframes slideIn {
@@ -829,4 +857,27 @@ body.menu-open {
     .signup-form {
         gap: 0.75rem;
     }
+}
+
+/* 1) Hide the hamburger (and mobile menu) by default on desktop */
+.hamburger {
+  display: none;
+}
+#mobile-nav {
+  display: none;
+}
+
+/* 2) At your mobile breakpoint, hide the normal nav-links and show the hamburger */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+}
+
+/* 3) Let your existing “.show” rule display the menu once JS toggles it */
+#mobile-nav.show {
+  display: flex;  /* or block, depending on your layout */
 }
