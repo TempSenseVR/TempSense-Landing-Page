@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact TempSense – Thermal Haptics For Everyone</title>
+
+   <link rel="stylesheet" href="styles.css">
+  <!-- FontAwesome for icons -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+
+  <!-- AOS animations -->
+  <link 
+    href="https://unpkg.com/aos@next/dist/aos.css" 
+    rel="stylesheet"
+  />
+  <script defer src="scripts.js"></script>
+  <script defer src="copy.js"></script>
+
+  <style>
+:root {
+    --primary: #6d28d9;         /* Bold purple */
+    --secondary: #2563eb;       /* Electric blue */
+    --accent: #f43f5e;          /* Hot pink/red accent */
+    --background: #09090b;      /* Near-black background */
+    --surface: #18181b;         /* Charcoal surface */
+    --text: #f9fafb;            /* Bright white text */
+    --text-muted: #a1a1aa;      /* Cool gray for secondary text */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    z-index: 1;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(125deg, #09090b 0%, #13151a 20%, #1a1b26 40%, #1e1e2e 60%, #181825 80%, #09090b 100%);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(109, 40, 217, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.content-block, .feature-card, .team-member, .cta-content {
+    background: rgba(24, 24, 27, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.logo-image {
+    width: 180px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    color: var(--text);
+    transform: translateY(-2px);
+}
+
+.hero {
+    position: relative;
+    padding: 8rem 5% 6rem;
+    overflow: hidden;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-section {
+    padding: 4rem 5% 6rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+    align-items: stretch; /* This ensures all cards have the same height */
+}
+
+.contact-card {
+    background: rgba(24, 24, 27, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 400px; /* Ensures consistent minimum height */
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(109, 40, 217, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.contact-card:hover::before {
+    left: 100%;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+    border-color: rgba(109, 40, 217, 0.3);
+}
+
+.contact-card-header {
+    flex-grow: 0;
+    margin-bottom: 2rem;
+}
+
+.contact-card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.contact-card-footer {
+    flex-grow: 0;
+    margin-top: auto;
+}
+
+.contact-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: block;
+}
+
+.contact-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--text), var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact-card p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.contact-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.contact-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.contact-link:hover::before {
+    left: 100%;
+}
+
+.contact-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(109, 40, 217, 0.4);
+}
+
+.copy-success {
+    position: absolute;
+    top: -4.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.copy-success.show {
+    opacity: 1;
+}
+
+.email-copy-container {
+    position: relative;
+    display: inline-block;
+}
+
+.social-section {
+    background: rgba(24, 24, 27, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 3rem;
+    text-align: center;
+}
+
+.social-section h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.social-section p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.social-links-block {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.social-links-block a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links-block a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-links-block a:hover::before {
+    opacity: 1;
+}
+
+.social-links-block a:hover {
+    color: white;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(109, 40, 217, 0.4);
+    border-color: var(--primary);
+}
+
+.social-links-block a i,
+.social-links-block a img {
+    position: relative;
+    z-index: 1;
+}
+
+.social-links-block a img {
+    width: 1.5rem;
+    height: auto;
+    filter: invert(60%);
+    transition: filter 0.3s ease;
+}
+
+.social-links-block a:hover img {
+    filter: invert(100%);
+}
+
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(9, 9, 11, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.hamburger:hover {
+    transform: scale(1.1);
+}
+
+#mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(24, 24, 27, 0.98);
+    backdrop-filter: blur(10px);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+#mobile-nav.show {
+    display: flex;
+}
+
+.close-menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.close-menu:hover {
+    transform: rotate(90deg);
+}
+
+.mobile-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.mobile-nav-list li {
+    width: 100%;
+}
+
+.mobile-nav-list a {
+    display: block;
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 1.25rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.mobile-nav-list a:hover,
+.mobile-nav-list a.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .contact-card {
+        min-height: auto; /* Remove fixed height on mobile */
+    }
+    
+    .contact-links {
+        flex-direction: column;
+    }
+    
+    .social-links {
+        gap: 1rem;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 6rem 5% 4rem;
+    }
+    
+    .contact-section {
+        padding: 3rem 5% 4rem;
+    }
+    
+    .contact-card {
+        padding: 2rem;
+    }
+    
+    .social-section {
+        padding: 2rem;
+    }
+}
+
+
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.social-links img {
+    width: 1.2rem;
+    height: auto;
+    filter: invert(60%);
+    transition: filter 0.3s ease;
+}
+
+.social-links a:hover img {
+    filter: invert(100%);
+}
+  </style>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  
+  <script>
+    function copyEmail() {
+      // Copy the email to clipboard
+      const email = 'contact@tempsense.dev';
+      navigator.clipboard.writeText(email).then(function() {
+        // Show success message
+        const successMsg = document.getElementById('copy-success');
+        successMsg.classList.add('show');
+        
+        // Hide the message after 2 seconds
+        setTimeout(function() {
+          successMsg.classList.remove('show');
+        }, 2000);
+      }).catch(function(err) {
+        console.error('Failed to copy email: ', err);
+      });
+    }
+  </script>
+</head>
+<body>
+  <header class="sticky-header">
+    <nav class="nav-container">
+      <div class="logo-container">
+        <a href="index.html">
+          <img 
+            src="logo_no_bg.png" 
+            alt="TempSense Logo" 
+            class="logo-image"
+          >
+        </a>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="signup.html">Get Updates</a></li>
+        <li>
+          <a href="https://discord.gg/XUgEVy4r3e">
+            Discord <i class="fab fa-discord"></i>
+          </a>
+        </li>
+        <li>
+          <a 
+            href="https://github.com/TempSenseVR" 
+            target="_blank"
+          >
+            GitHub <i class="fab fa-github"></i>
+          </a>
+        </li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+
+      <button class="hamburger" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+
+    <div class="mobile-nav-links" id="mobile-nav">
+      <button class="close-menu" aria-label="Close menu">
+        <i class="fas fa-times"></i>
+      </button>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="signup.html">Get Updates</a></li>
+        <li>
+          <a href="https://github.com/TempSenseVR/TempSense-GUI/releases">
+            Download
+          </a>
+        </li>
+        <li>
+          <a href="https://discord.gg/XUgEVy4r3e">
+            Community <i class="fab fa-discord"></i>
+          </a>
+        </li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="about.html">About</a></li>
+        <li>
+          <a href="https://github.com/TempSenseVR">
+            Developers <i class="fab fa-github"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 data-aos="fade-up">Get in Touch</h1>
+        <p data-aos="fade-up" data-aos-delay="200">
+          Have questions, ideas, or want to collaborate? We'd love to hear from you. Reach out through any of the channels below and let's build the future of haptics together.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="contact-grid">
+      <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="contact-card-header">
+          <i class="fas fa-envelope contact-icon"></i>
+          <h3>Email Us</h3>
+        </div>
+        <div class="contact-card-content">
+          <p>Get in touch directly for partnerships, or general inquiries.</p>
+        </div>
+        <div class="contact-card-footer">
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem;">
+            contact [at] tempsense.dev
+          </p>
+          <div class="contact-links">
+            <div class="email-copy-container">
+              <button class="contact-link" onclick="copyEmail()">
+                <i class="fas fa-copy"></i>
+                Copy Email
+              </button>
+              <div class="copy-success" id="copy-success">Email copied!</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="contact-card-header">
+          <i class="fab fa-discord contact-icon"></i>
+          <h3>Join Our Community</h3>
+        </div>
+        <div class="contact-card-content">
+          <p>Connect with other developers, get real-time support, and stay updated on the latest developments in our Discord server.</p>
+        </div>
+        <div class="contact-card-footer">
+          <div class="contact-links">
+            <a href="https://discord.gg/XUgEVy4r3e" target="_blank" class="contact-link">
+              <i class="fab fa-discord"></i>
+              Join Discord
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="contact-card-header">
+          <i class="fab fa-github contact-icon"></i>
+          <h3>Contribute & Collaborate</h3>
+        </div>
+        <div class="contact-card-content">
+          <p>Interested in contributing to TempSense? Check out our GitHub to see what we are up to.</p>
+        </div>
+        <div class="contact-card-footer">
+          <div class="contact-links">
+            <a href="https://github.com/TempSenseVR" target="_blank" class="contact-link">
+              <i class="fab fa-github"></i>
+              View GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-section" data-aos="fade-up" data-aos-delay="400">
+      <h3>Follow Our Journey</h3>
+      <p>Stay connected and follow our progress across social platforms</p>
+      <div class="social-links-block">
+        <a href="https://bsky.app/profile/TempSense.dev" target="_blank" title="Bluesky">
+          <img src="assets/bluesky.svg" alt="Bluesky" />
+        </a>
+        <a href="https://x.com/TempSenseXR" target="_blank" title="X (Twitter)">
+          <i class="fab fa-x"></i>
+        </a>
+        <a href="https://github.com/TempSenseVR" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.youtube.com/@TempSenseXR" target="_blank" title="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://discord.gg/XUgEVy4r3e" target="_blank" title="Discord">
+          <i class="fab fa-discord"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <footer>
+    <div class="footer-bottom">
+      <p>&copy; 2025 TempSense</p>
+      <div class="social-links">
+        <a href="https://bsky.app/profile/TempSense.dev" target="_blank" class="social-bluesky">
+            <img src="assets/bluesky.svg" alt="Bluesky" />
+        </a>
+        <a href="https://x.com/TempSenseXR" target="_blank">
+          <i class="fab fa-x"></i>
+        </a>
+        <a href="https://github.com/TempSenseVR" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.youtube.com/@TempSenseXR" target="_blank">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://discord.gg/XUgEVy4r3e" target="_blank">
+          <i class="fab fa-discord"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
